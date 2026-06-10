@@ -5,6 +5,7 @@ from openpyxl import Workbook
 from flask import send_file
 import io
 from datetime import datetime
+from io import BytesIO
 
 from reportlab.platypus import (
     SimpleDocTemplate,
@@ -831,9 +832,9 @@ def export_pdf():
     cur.close()
     conn.close()
 
-    pdf_file = "laporan_freshegg.pdf"
+    buffer = BytesIO()
 
-    doc = SimpleDocTemplate(pdf_file)
+    doc = SimpleDocTemplate(buffer)
 
     styles = getSampleStyleSheet()
 
@@ -927,9 +928,13 @@ def export_pdf():
 
     doc.build(elements)
 
+    buffer.seek(0)
+
     return send_file(
-        pdf_file,
-        as_attachment=True
+        buffer,
+        as_attachment=True,
+        download_name="laporan_freshegg.pdf",
+        mimetype="application/pdf"
     )
 
 @app.route('/pendapatan')
