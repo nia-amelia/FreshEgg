@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Laporan Peternakan
+{% endblock %}
+
+{% block content %}
+
+<!-- HEADER -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <h3 class="mb-1">
+            📊 Laporan Peternakan
+        </h3>
+
+        <p class="text-muted mb-0">
+            Ringkasan produksi, penjualan, dan pendapatan
+        </p>
+
+    </div>
+
+</div>
+
+<!-- FILTER -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <form method="GET">
+
+            <div class="row g-3 align-items-end">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+
+                        Pilih Bulan
+
+                    </label>
+
+                    <input type="month"
+                           name="bulan"
+                           class="form-control"
+                           value="{{ bulan }}">
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <button class="btn btn-warning w-100">
+
+                        <i class="bi bi-funnel"></i>
+                        Filter
+
+                    </button>
+
+                </div>
+
+                <div class="d-flex gap-2">
+
+                    <a href="/laporan/export"
+                    class="btn btn-success">
+
+                        <i class="bi bi-file-earmark-excel"></i>
+                        Export Excel
+
+                    </a>
+
+                    <a href="/laporan/pdf"
+                    class="btn btn-danger">
+
+                        <i class="bi bi-file-earmark-pdf"></i>
+                        Export PDF
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- STATISTIK -->
+
+<div class="row">
+
+    <!-- PRODUKSI -->
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card stat-card gradient-gold shadow border-0 h-100">
+
+            <div class="card-body text-center">
+
+                <div class="mb-2">
+
+                    <i class="bi bi-egg-fill fs-1"></i>
+
+                </div>
+
+                <small>Total Produksi</small>
+
+                <div class="stat-number">
+
+                    {{ total_produksi }}
+
+                </div>
+
+                <small>
+                    Butir Telur
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PENJUALAN -->
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card stat-card gradient-brown shadow border-0 h-100">
+
+            <div class="card-body text-center">
+
+                <div class="mb-2">
+
+                    <i class="bi bi-cart-check-fill fs-1"></i>
+
+                </div>
+
+                <small>Total Penjualan</small>
+
+                <div class="stat-number">
+
+                    {{ total_penjualan }}
+
+                </div>
+
+                <small>
+                    Kg
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PENDAPATAN -->
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card stat-card gradient-caramel shadow border-0 h-100">
+
+            <div class="card-body text-center">
+
+                <div class="mb-2">
+
+                    <i class="bi bi-cash-coin fs-1"></i>
+
+                </div>
+
+                <small>Total Pendapatan</small>
+
+                <div class="stat-number">
+
+                    Rp {{ "{:,.0f}".format(total_pendapatan) }}
+
+                </div>
+
+                <small>
+                    Rupiah
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

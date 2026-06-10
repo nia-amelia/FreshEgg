@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Harga Telur
+{% endblock %}
+
+{% block content %}
+
+<!-- HEADER -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+        <div>
+
+            <h3 class="mb-1">
+                💰 Harga Telur
+            </h3>
+
+            <p class="text-muted mb-0">
+                Riwayat perubahan harga telur per kilogram
+            </p>
+
+        </div>
+
+        <a href="/harga/tambah"
+           class="btn btn-warning fw-semibold">
+
+            <i class="bi bi-plus-circle"></i>
+            Tambah Harga
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- RINGKASAN -->
+
+<div class="row mb-4">
+
+    <div class="col-md-6 mb-3">
+
+        <div class="card stat-card gradient-gold shadow border-0">
+
+            <div class="card-body">
+
+                <small>Total Data Harga</small>
+
+                <div class="stat-number">
+
+                    {{ hargas|length }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <div class="card stat-card gradient-brown shadow border-0">
+
+            <div class="card-body">
+
+                <small>Harga Terbaru</small>
+
+                <div class="stat-number">
+
+                    {% if hargas %}
+
+                        Rp {{ "{:,.0f}".format(hargas[0][2]) }}
+
+                    {% else %}
+
+                        -
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================ -->
+<!-- DESKTOP VIEW -->
+<!-- ================================ -->
+
+<div class="d-none d-md-block">
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Tanggal</th>
+                            <th>Harga / Kg</th>
+                            <th width="150">
+                                Aksi
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for harga in hargas %}
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+
+                                    {{ harga[1] }}
+
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <span class="fw-bold text-success">
+
+                                    Rp {{ "{:,.0f}".format(harga[2]) }}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <a href="/harga/edit/{{ harga[0] }}"
+                                   class="btn btn-sm btn-outline-primary">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </a>
+
+                                <a href="/harga/delete/{{ harga[0] }}"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Yakin hapus harga?')">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    {% if not hargas %}
+
+                        <tr>
+
+                            <td colspan="3"
+                                class="text-center text-muted py-4">
+
+                                Belum ada data harga.
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================ -->
+<!-- MOBILE VIEW -->
+<!-- ================================ -->
+
+<div class="d-block d-md-none">
+
+    {% for harga in hargas %}
+
+    <div class="card border-0 shadow-sm mb-3">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h6 class="mb-0">
+
+                    💰 Harga Telur
+
+                </h6>
+
+                <span class="badge bg-secondary">
+
+                    {{ harga[1] }}
+
+                </span>
+
+            </div>
+
+            <hr>
+
+            <div>
+
+                <small class="text-muted">
+
+                    Harga per Kg
+
+                </small>
+
+                <div class="fw-bold fs-4 text-success">
+
+                    Rp {{ "{:,.0f}".format(harga[2]) }}
+
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+
+                <a href="/harga/edit/{{ harga[0] }}"
+                   class="btn btn-outline-primary btn-sm flex-fill">
+
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+
+                </a>
+
+                <a href="/harga/delete/{{ harga[0] }}"
+                   class="btn btn-outline-danger btn-sm flex-fill"
+                   onclick="return confirm('Yakin hapus harga?')">
+
+                    <i class="bi bi-trash"></i>
+                    Hapus
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    {% if not hargas %}
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body text-center text-muted">
+
+            Belum ada data harga.
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

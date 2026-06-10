@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tambah Kandang
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-header bg-transparent border-0 pt-4">
+
+                <h3 class="mb-1">
+                    🏠 Tambah Kandang
+                </h3>
+
+                <p class="text-muted mb-0">
+                    Tambahkan data kandang baru
+                </p>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-house-door"></i>
+                            Nama Kandang
+
+                        </label>
+
+                        <input type="text"
+                               name="nama_kandang"
+                               class="form-control"
+                               placeholder="Contoh: Kandang A"
+                               required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-calendar-event"></i>
+                            Umur Ayam (Bulan)
+
+                        </label>
+
+                        <input type="number"
+                               name="umur_bulan"
+                               class="form-control"
+                               placeholder="Contoh: 18"
+                               required>
+
+                        <div class="form-text">
+
+                            Umur rata-rata ayam dalam kandang.
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-feather"></i>
+                            Jumlah Ayam
+
+                        </label>
+
+                        <input type="number"
+                               name="jumlah_ayam"
+                               class="form-control"
+                               placeholder="Contoh: 500"
+                               required>
+
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <a href="/kandang"
+                           class="btn btn-outline-secondary flex-fill">
+
+                            <i class="bi bi-arrow-left"></i>
+                            Kembali
+
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-warning flex-fill">
+
+                            <i class="bi bi-save"></i>
+                            Simpan
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

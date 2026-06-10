@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Data Kandang
+{% endblock %}
+
+{% block content %}
+
+<!-- HEADER -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+        <div>
+
+            <h3 class="mb-1">
+                🏠 Data Kandang
+            </h3>
+
+            <p class="text-muted mb-0">
+                Kelola data kandang dan populasi ayam
+            </p>
+
+        </div>
+
+        <a href="/kandang/tambah"
+           class="btn btn-warning fw-semibold">
+
+            <i class="bi bi-plus-circle"></i>
+            Tambah Kandang
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- RINGKASAN -->
+
+<div class="row mb-4">
+
+    <div class="col-md-6 mb-3">
+
+        <div class="card stat-card gradient-brown shadow border-0">
+
+            <div class="card-body">
+
+                <small>Total Kandang</small>
+
+                <div class="stat-number">
+
+                    {{ kandangs|length }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <div class="card stat-card gradient-gold shadow border-0">
+
+            <div class="card-body">
+
+                <small>Data Aktif</small>
+
+                <div class="stat-number">
+
+                    {{ kandangs|length }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+<!-- DESKTOP VIEW -->
+<!-- ================================= -->
+
+<div class="d-none d-md-block">
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Nama Kandang</th>
+                            <th>Umur</th>
+                            <th>Jumlah Ayam</th>
+                            <th width="150">
+                                Aksi
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% if kandangs %}
+
+                        {% for kandang in kandangs %}
+
+                        <tr>
+
+                            <td>
+
+                                {{ kandang[0] }}
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-secondary">
+
+                                    {{ kandang[1] }}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                🗓️ {{ kandang[2] }} Bulan
+
+                            </td>
+
+                            <td>
+
+                                🐔 {{ kandang[3] }}
+
+                            </td>
+
+                            <td>
+
+                                <a href="/kandang/edit/{{ kandang[0] }}"
+                                   class="btn btn-sm btn-outline-primary">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </a>
+
+                                <a href="/kandang/delete/{{ kandang[0] }}"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Yakin ingin menghapus kandang ini?')">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="5"
+                                class="text-center text-muted py-4">
+
+                                Belum ada data kandang
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+<!-- MOBILE VIEW -->
+<!-- ================================= -->
+
+<div class="d-block d-md-none">
+
+    {% for kandang in kandangs %}
+
+    <div class="card border-0 shadow-sm mb-3">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h6 class="mb-0">
+
+                    🏠 {{ kandang[1] }}
+
+                </h6>
+
+                <span class="badge bg-secondary">
+
+                    ID {{ kandang[0] }}
+
+                </span>
+
+            </div>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-6">
+
+                    <small class="text-muted">
+
+                        Umur
+
+                    </small>
+
+                    <div class="fw-bold">
+
+                        🗓️ {{ kandang[2] }} Bulan
+
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+
+                    <small class="text-muted">
+
+                        Jumlah Ayam
+
+                    </small>
+
+                    <div class="fw-bold">
+
+                        🐔 {{ kandang[3] }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+
+                <a href="/kandang/edit/{{ kandang[0] }}"
+                   class="btn btn-outline-primary btn-sm flex-fill">
+
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+
+                </a>
+
+                <a href="/kandang/delete/{{ kandang[0] }}"
+                   class="btn btn-outline-danger btn-sm flex-fill"
+                   onclick="return confirm('Yakin ingin menghapus kandang ini?')">
+
+                    <i class="bi bi-trash"></i>
+                    Hapus
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    {% if not kandangs %}
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body text-center text-muted">
+
+            Belum ada data kandang
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

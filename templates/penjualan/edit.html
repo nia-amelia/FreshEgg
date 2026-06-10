@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Edit Penjualan</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Tanggal</label>
+        <input type="date"
+               name="tanggal"
+               value="{{ penjualan[1] }}"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Pembeli</label>
+        <input type="text"
+               name="pembeli"
+               value="{{ penjualan[2] }}"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Jumlah Kg</label>
+        <input type="number"
+               step="0.01"
+               name="jumlah_kg"
+               value="{{ penjualan[3] }}"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Keterangan</label>
+        <textarea name="keterangan"
+                  class="form-control">{{ penjualan[6] }}</textarea>
+    </div>
+
+    <butt{% extends 'base.html' %}
+
+{% block title %}
+Edit Penjualan
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-header bg-transparent border-0 pt-4">
+
+                <h3 class="mb-1">
+                    ✏️ Edit Penjualan
+                </h3>
+
+                <p class="text-muted mb-0">
+                    Perbarui data penjualan telur
+                </p>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-calendar-event"></i>
+                            Tanggal
+
+                        </label>
+
+                        <input type="date"
+                               name="tanggal"
+                               value="{{ penjualan[1] }}"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-person-fill"></i>
+                            Nama Pembeli
+
+                        </label>
+
+                        <input type="text"
+                               name="pembeli"
+                               value="{{ penjualan[2] }}"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-box-seam"></i>
+                            Jumlah Terjual (Kg)
+
+                        </label>
+
+                        <input type="number"
+                               step="0.01"
+                               name="jumlah_kg"
+                               value="{{ penjualan[3] }}"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            <i class="bi bi-card-text"></i>
+                            Keterangan
+
+                        </label>
+
+                        <textarea name="keterangan"
+                                  class="form-control"
+                                  rows="3">{{ penjualan[6] }}</textarea>
+
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <a href="/penjualan"
+                           class="btn btn-outline-secondary flex-fill">
+
+                            <i class="bi bi-arrow-left"></i>
+                            Kembali
+
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-warning flex-fill">
+
+                            <i class="bi bi-check-circle"></i>
+                            Update
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}on class="btn btn-success">
+        Update
+    </button>
+
+</form>
+
+{% endblock %}
